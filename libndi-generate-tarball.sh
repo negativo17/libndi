@@ -2,7 +2,7 @@
 
 INSTALLER="InstallNDISDK_v3_Linux.sh"
 EXTRACTED_ROOT="NDI SDK for Linux"
-PACKAGE_NAME="ndi-sdk"
+PACKAGE_NAME="libndi"
 
 TARBALL_START=$(($(sed -n '/^__NDI_ARCHIVE_BEGIN__$/=' ${INSTALLER}) + 1))
 

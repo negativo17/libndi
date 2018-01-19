@@ -1,4 +1,4 @@
-Name:     ndi-sdk
+Name:     libndi
 Version:  20171009.r82134
 Release:  1%{?dist}
 Summary:  NewTek NDI SDK      
@@ -8,7 +8,7 @@ URL:      https://www.newtek.com/ndi/sdk/
 ExclusiveArch: i686 x86_64 armv7hl
 
 Source0:  %{name}-%{version}.tar.xz
-Source1:  %{name}-extract.sh
+Source1:  %{name}-generate-tarball.sh
 
 BuildRequires: sed
 
