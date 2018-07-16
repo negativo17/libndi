@@ -1,5 +1,5 @@
 Name:     libndi
-Version:  20171009.r82134
+Version:  20180625.r90694
 Release:  1%{?dist}
 Summary:  NewTek NDI SDK      
 License:  Proprietary    
@@ -62,5 +62,8 @@ cp -a include .%{_libdir} %{buildroot}%{_prefix}/
 %{_libdir}/libndi.so
 
 %changelog
+* Mon Jul 16 2018 Simone Caronni <negativo17@gmail.com> - 20180625.r90694-1
+- Update to version 3.5.
+
 * Fri Jan 19 2018 Simone Caronni <negativo17@gmail.com> - 20171009.r82134-1
 - First build.
