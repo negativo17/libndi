@@ -2,14 +2,14 @@
 
 Name:           libndi
 Epoch:          1
-Version:        4.6.2
+Version:        5.1.1
 Release:        1%{?dist}
 Summary:        NewTek NDI SDK
 License:        NewTek’s NDI® Software Development Kit (SDK) License Agreement
 URL:            https://ndi.tv/sdk/
-ExclusiveArch:  i686 x86_64 armv7hl
+ExclusiveArch:  i686 x86_64 armv7hl aarch64
 
-Source0:        https://downloads.ndi.tv/SDK/NDI_SDK_Linux/InstallNDISDK_v4_Linux.tar.gz
+Source0:        https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v%(echo %{version} | cut -f1 -d '.')_Linux.tar.gz
 
 BuildRequires:  chrpath
 BuildRequires:  sed
@@ -47,6 +47,9 @@ cat Version.txt
 mv lib/arm-rpi3-linux-gnueabihf ./lib/armv7hl-linux-gnu
 mv bin/arm-rpi3-linux-gnueabihf ./bin/armv7hl-linux-gnu
 
+mv lib/aarch64-rpi4-linux-gnueabi ./lib/aarch64-linux-gnu
+mv bin/aarch64-rpi4-linux-gnueabi ./bin/aarch64-linux-gnu
+
 # rpmlint fixes
 find . -name "*pp" -exec sed -i -e 's/\r$//' {} \;
 
@@ -59,8 +62,8 @@ mkdir -p %{buildroot}%{_includedir}
 mkdir -p %{buildroot}%{_libdir}
 
 install -p -m 0644 include/* %{buildroot}%{_includedir}/
-
 install -p -m 0755 lib/%{_arch}-linux-gnu/* %{buildroot}%{_libdir}/
+
 chrpath -d %{buildroot}%{_libdir}/libndi.so.%{version}
 ldconfig -vn %{buildroot}%{_libdir}
 ln -sf libndi.so.%{version} %{buildroot}%{_libdir}/libndi.so
@@ -69,21 +72,25 @@ install -p -m 0755 bin/%{_arch}-linux-gnu/* %{buildroot}%{_bindir}/
 
 %files
 %license "NDI SDK License Agreement.txt" licenses/libndi_licenses.txt
+%{_bindir}/ndi-benchmark
 %{_bindir}/ndi-directory-service
 %{_bindir}/ndi-record
-%{_libdir}/libndi.so.4
+%{_libdir}/libndi.so.%(echo %{version} | cut -f1 -d '.')
 %{_libdir}/libndi.so.%{version}
 
 %files devel
-%doc examples
 %{_includedir}/*
 %{_libdir}/libndi.so
 
 %files docs
-%license "NDI SDK License Agreement.pdf"
+%license "NDI SDK License Agreement.pdf" licenses/libndi_licenses.txt
 %doc Version.txt documentation/* examples logos
 
 %changelog
+* Sun Mar 13 2022 Simone Caronni <negativo17@gmail.com> - 1:5.1.1-1
+- Update to 5.1.1 (NDI 2022-02-10 r129281 v5.1.1)
+- Enable aarch64 support.
+
 * Thu Mar 25 2021 Simone Caronni <negativo17@gmail.com> - 1:4.6.2-1
 - Update to 4.6.2, update epoch to match version.
 - Revamp SPEC file.
