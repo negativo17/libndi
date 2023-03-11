@@ -2,7 +2,7 @@
 
 Name:           libndi
 Epoch:          1
-Version:        5.1.1
+Version:        5.5.3
 Release:        1%{?dist}
 Summary:        NewTek NDI SDK
 License:        NewTek’s NDI® Software Development Kit (SDK) License Agreement
@@ -44,8 +44,8 @@ TARBALL_START=$(($(sed -n '/^__NDI_ARCHIVE_BEGIN__$/=' ${INSTALLER}) + 1))
 tail -n +"${TARBALL_START}" ${INSTALLER} | tar --strip-components=1 -zxf -
 cat Version.txt
 
-mv lib/arm-rpi3-linux-gnueabihf ./lib/armv7hl-linux-gnu
-mv bin/arm-rpi3-linux-gnueabihf ./bin/armv7hl-linux-gnu
+mv lib/arm-rpi4-linux-gnueabihf ./lib/armv7hl-linux-gnu
+mv bin/arm-rpi4-linux-gnueabihf ./bin/armv7hl-linux-gnu
 
 mv lib/aarch64-rpi4-linux-gnueabi ./lib/aarch64-linux-gnu
 mv bin/aarch64-rpi4-linux-gnueabi ./bin/aarch64-linux-gnu
@@ -74,6 +74,7 @@ install -p -m 0755 bin/%{_arch}-linux-gnu/* %{buildroot}%{_bindir}/
 %license "NDI SDK License Agreement.txt" licenses/libndi_licenses.txt
 %{_bindir}/ndi-benchmark
 %{_bindir}/ndi-directory-service
+%{_bindir}/ndi-free-audio
 %{_bindir}/ndi-record
 %{_libdir}/libndi.so.%(echo %{version} | cut -f1 -d '.')
 %{_libdir}/libndi.so.%{version}
@@ -87,6 +88,9 @@ install -p -m 0755 bin/%{_arch}-linux-gnu/* %{buildroot}%{_bindir}/
 %doc Version.txt documentation/* examples logos
 
 %changelog
+* Sat Mar 11 2023 Simone Caronni <negativo17@gmail.com> - 1:5.5.3-1
+- Update to version 5.5.3.
+
 * Sun Mar 13 2022 Simone Caronni <negativo17@gmail.com> - 1:5.1.1-1
 - Update to 5.1.1 (NDI 2022-02-10 r129281 v5.1.1)
 - Enable aarch64 support.
