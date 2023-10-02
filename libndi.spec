@@ -2,14 +2,14 @@
 
 Name:           libndi
 Epoch:          1
-Version:        5.5.3
+Version:        5.6.0
 Release:        1%{?dist}
 Summary:        NewTek NDI SDK
 License:        NewTek’s NDI® Software Development Kit (SDK) License Agreement
 URL:            https://ndi.tv/sdk/
 ExclusiveArch:  i686 x86_64 armv7hl aarch64
 
-Source0:        https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v%(echo %{version} | cut -f1 -d '.')_Linux.tar.gz
+Source0:        https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v%(echo %{version} | cut -f1 -d '.')_Linux.tar.gz#/ndi-sdk-%{version}.tar.gz
 
 BuildRequires:  chrpath
 BuildRequires:  sed
@@ -85,9 +85,12 @@ install -p -m 0755 bin/%{_arch}-linux-gnu/* %{buildroot}%{_bindir}/
 
 %files docs
 %license "NDI SDK License Agreement.pdf" licenses/libndi_licenses.txt
-%doc Version.txt documentation/* examples logos
+%doc Version.txt documentation/* examples
 
 %changelog
+* Mon Oct 02 2023 Simone Caronni <negativo17@gmail.com> - 1:5.6.0-1
+- Update to 5.6.0.
+
 * Sat Mar 11 2023 Simone Caronni <negativo17@gmail.com> - 1:5.5.3-1
 - Update to version 5.5.3.
 
