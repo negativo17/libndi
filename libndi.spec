@@ -2,7 +2,7 @@
 
 Name:           libndi
 Epoch:          1
-Version:        5.6.0
+Version:        6.0.1
 Release:        1%{?dist}
 Summary:        NewTek NDI SDK
 License:        NewTek’s NDI® Software Development Kit (SDK) License Agreement
@@ -88,6 +88,10 @@ install -p -m 0755 bin/%{_arch}-linux-gnu/* %{buildroot}%{_bindir}/
 %doc Version.txt documentation/* examples
 
 %changelog
+* Fri Sep 27 2024 Simone Caronni <negativo17@gmail.com> - 1:6.0.1-1
+- Update to 6.0.1.
+- Trim changelog.
+
 * Mon Oct 02 2023 Simone Caronni <negativo17@gmail.com> - 1:5.6.0-1
 - Update to 5.6.0.
 
@@ -97,16 +101,3 @@ install -p -m 0755 bin/%{_arch}-linux-gnu/* %{buildroot}%{_bindir}/
 * Sun Mar 13 2022 Simone Caronni <negativo17@gmail.com> - 1:5.1.1-1
 - Update to 5.1.1 (NDI 2022-02-10 r129281 v5.1.1)
 - Enable aarch64 support.
-
-* Thu Mar 25 2021 Simone Caronni <negativo17@gmail.com> - 1:4.6.2-1
-- Update to 4.6.2, update epoch to match version.
-- Revamp SPEC file.
-
-* Mon Oct 15 2018 Simone Caronni <negativo17@gmail.com> - 20181005.r97672-1
-- Update to 20181005.r97672 (3.7).
-
-* Mon Jul 16 2018 Simone Caronni <negativo17@gmail.com> - 20180625.r90694-1
-- Update to version 3.5.
-
-* Fri Jan 19 2018 Simone Caronni <negativo17@gmail.com> - 20171009.r82134-1
-- First build.
